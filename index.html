@@ -1,10 +1,270 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Julia Devon Art</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
-  <h1>Welcome to Julia Devon Art</h1>
-  <p>This site is hosted on GitHub Pages.</p>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Julia Devon Art</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,300;1,6..72,400&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F4EEE3; }
+  body { font-family: Karla, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: #24352E; text-decoration: none; }
+  a:hover { color: #8E5D5B; }
+  img { display: block; }
+  ::selection { background: #F0B0A8; }
+</style>
+</helmet>
+<div style="background:#F4EEE3; color:#24352E; min-height:100vh; padding-bottom:0">
+
+  <header style="display:flex; flex-wrap:wrap; gap:20px 32px; align-items:baseline; justify-content:space-between; padding:26px clamp(20px,5vw,64px) 22px; border-bottom:1px solid rgba(36,53,46,0.14); position:sticky; top:0; background:#F4EEE3; z-index:40">
+    <a href="#" onClick="{{ goHome }}" style="font-family:Newsreader, Georgia, serif; font-weight:400; font-size:clamp(21px,2.4vw,27px); letter-spacing:0.01em; line-height:1">Julia Devon <span style="color:#8E5D5B">Cohen</span></a>
+    <nav style="display:flex; gap:clamp(18px,3vw,34px); align-items:baseline; font-size:13px; letter-spacing:0.13em; text-transform:uppercase">
+      <a href="#" onClick="{{ goPortfolio }}" style="padding-bottom:3px; border-bottom:1px solid {{ ulPortfolio }}">Portfolio</a>
+      <a href="#" onClick="{{ goAbout }}" style="padding-bottom:3px; border-bottom:1px solid {{ ulAbout }}">About</a>
+      <a href="#" onClick="{{ goInquire }}" style="padding-bottom:3px; border-bottom:1px solid {{ ulInquire }}">Inquire</a>
+    </nav>
+  </header>
+
+  <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+  <main>
+    <section style="position:relative">
+      <div style="width:100%; height:clamp(340px,72vh,760px); overflow:hidden; background:#E7DFD1">
+        <img src="images/unity-01.jpg" alt="Unity No. 1, acrylic on canvas" style="width:100%; height:100%; object-fit:cover; object-position:center 45%">
+      </div>
+      <div style="max-width:1240px; margin:0 auto; padding:0 clamp(20px,5vw,64px)">
+        <div style="background:#F4EEE3; margin-top:-1px; padding:clamp(30px,5vw,56px) clamp(24px,4vw,56px) clamp(28px,4vw,48px); max-width:640px; border-top:3px solid #E0A02F; transform:translateY(clamp(-64px,-6vw,-28px))">
+          <p style="margin:0 0 14px; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:#8E5D5B">Newest series</p>
+          <h1 style="font-family:Newsreader, Georgia, serif; font-weight:300; font-size:clamp(46px,7vw,86px); line-height:0.94; margin:0 0 18px; letter-spacing:-0.02em">Unity</h1>
+          <p style="margin:0; font-family:Newsreader, Georgia, serif; font-size:clamp(17px,1.8vw,21px); line-height:1.55; color:#3B4A43; text-wrap:pretty">Translucent shapes overlap and hold each other in place. Painted in 2026, the series looks at the places where separate lives meet and mix — family, memory, the color that only appears where two things overlap.</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1240px; margin:0 auto; padding:0 clamp(20px,5vw,64px) clamp(60px,9vw,120px)">
+      <div style="display:flex; flex-wrap:wrap; gap:12px 28px; align-items:baseline; justify-content:space-between; border-bottom:1px solid rgba(36,53,46,0.14); padding-bottom:16px; margin-bottom:clamp(28px,4vw,44px)">
+        <h2 style="font-family:Newsreader, Georgia, serif; font-weight:400; font-size:clamp(24px,3vw,34px); margin:0; letter-spacing:-0.01em">Unity <span style="color:#8E5D5B">, 2026</span></h2>
+        <p style="margin:0; font-size:13px; letter-spacing:0.06em; color:#5C6A62">Acrylic and gouache on canvas</p>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(100%, 320px), 1fr)); gap:clamp(24px,3vw,44px)">
+        <sc-for list="{{ works }}" as="w">
+          <a href="#" onClick="{{ w.open }}" aria-label="{{ w.title }}" style="display:block" style-hover="opacity:0.88">
+            <div style="width:100%; aspect-ratio:{{ w.ratio }}; overflow:hidden; background:#E7DFD1; position:relative">
+              <sc-if value="{{ w.img }}">
+                <div style="position:absolute; inset:0; background-image:{{ w.bg }}; background-size:cover; background-position:center"></div>
+              </sc-if>
+              <sc-if value="{{ w.placeholder }}">
+                <div style="position:absolute; inset:0; background:{{ w.stripes }}; display:flex; align-items:flex-end; padding:14px">
+                  <span style="font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11px; letter-spacing:0.08em; color:#3B4A43; background:#F4EEE3; padding:4px 8px">{{ w.slot }}</span>
+                </div>
+              </sc-if>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background:#EDE4D6; padding:clamp(52px,7vw,96px) 0">
+      <div style="max-width:1240px; margin:0 auto; padding:0 clamp(20px,5vw,64px); display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap:clamp(28px,4vw,56px); align-items:center">
+        <div style="min-width:0">
+          <p style="margin:0 0 14px; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:#8E5D5B">In the studio</p>
+          <h2 style="font-family:Newsreader, Georgia, serif; font-weight:300; font-size:clamp(28px,3.6vw,42px); line-height:1.1; margin:0 0 18px">Two canvases at a time, most mornings.</h2>
+          <p style="margin:0 0 24px; font-size:16px; line-height:1.7; color:#3B4A43; max-width:46ch; text-wrap:pretty">Layers go down thin and wait. What happens between them — the olive that turns gold under pink, a line that survives three coats — decides where the painting goes next.</p>
+          <a href="#" onClick="{{ goAbout }}" style="display:inline-block; font-size:13px; letter-spacing:0.13em; text-transform:uppercase; border-bottom:1px solid #E0A02F; padding-bottom:4px">More about Julia</a>
+        </div>
+        <div style="min-width:0">
+          <img src="images/studio-easel.jpg" alt="Two paintings on easels in Julia's studio" style="width:100%; height:auto; object-fit:cover">
+        </div>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isAbout }}">
+  <main style="max-width:1240px; margin:0 auto; padding:clamp(40px,6vw,84px) clamp(20px,5vw,64px) clamp(60px,9vw,120px)">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap:clamp(32px,5vw,72px); align-items:start">
+      <div style="min-width:0; position:relative">
+        <img src="images/julia-studio.jpg" alt="Julia Devon Cohen beside a painting of colored pencils" style="width:100%; height:auto">
+        <p style="margin:12px 0 0; font-size:12px; letter-spacing:0.06em; color:#5C6A62">Julia with <em style="font-family:Newsreader, Georgia, serif">Sharpened</em>, 2024</p>
+      </div>
+      <div style="min-width:0">
+        <p style="margin:0 0 14px; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:#8E5D5B">About</p>
+        <h1 style="font-family:Newsreader, Georgia, serif; font-weight:300; font-size:clamp(34px,5vw,58px); line-height:1.05; margin:0 0 28px; letter-spacing:-0.02em">Julia Devon Cohen</h1>
+        <div style="max-width:56ch; font-size:17px; line-height:1.75; color:#3B4A43">
+          <p style="margin:0 0 20px; font-family:Newsreader, Georgia, serif; font-size:clamp(19px,2vw,23px); line-height:1.5; color:#24352E; text-wrap:pretty">Julia Devon Cohen is an artist, designer and art director based in the Tampa Bay area.</p>
+          <p style="margin:0 0 20px; text-wrap:pretty">Her love of art began in high school, painting her lunches away in the art room. After graduating from Carnegie Mellon University, School of Design, she spent the bulk of her career as a designer and art director at Hallmark Cards in Kansas City. She left Hallmark after many years for more time with her family and to pursue an art career. Julia recently moved to the Tampa Bay area with her husband and three children.</p>
+          <p style="margin:0 0 20px; text-wrap:pretty">Inspired by the simple moments of everyday life, her paintings capture the untold stories of colorful objects. She reveals their personalities in blunt pencil tips and wayward pink petals — tokens of a messy, art-filled afternoon, or a bouquet too soft for little fingers to resist a touch. Each object stands for a memory, a glimpse into family life and the precious shared moments in time.</p>
+          <p style="margin:0 0 20px; text-wrap:pretty">The work is bright and colorful, at home in a playroom, a game room or an office. Her paintings have been featured and awarded in several regional exhibitions. Making the work, and sharing it, is what keeps her at the easel.</p>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:14px 28px; margin-top:34px; padding-top:26px; border-top:1px solid rgba(36,53,46,0.14); font-size:13px; letter-spacing:0.13em; text-transform:uppercase">
+          <a href="#" onClick="{{ goInquire }}" style="border-bottom:1px solid #E0A02F; padding-bottom:4px">Inquire about work</a>
+          <a href="https://instagram.com/juliadevonart" target="_blank" rel="noopener" style="border-bottom:1px solid rgba(36,53,46,0.2); padding-bottom:4px">Instagram</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  </sc-if>
+
+  <sc-if value="{{ isInquire }}">
+  <main style="max-width:1240px; margin:0 auto; padding:clamp(40px,6vw,84px) clamp(20px,5vw,64px) clamp(60px,9vw,120px)">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap:clamp(32px,5vw,72px); align-items:start">
+      <div style="min-width:0">
+        <p style="margin:0 0 14px; font-size:12px; letter-spacing:0.2em; text-transform:uppercase; color:#8E5D5B">Inquire</p>
+        <h1 style="font-family:Newsreader, Georgia, serif; font-weight:300; font-size:clamp(34px,5vw,58px); line-height:1.05; margin:0 0 24px; letter-spacing:-0.02em">Ask about a painting</h1>
+        <p style="margin:0 0 32px; max-width:48ch; font-size:17px; line-height:1.75; color:#3B4A43; text-wrap:pretty">Write to me with the title you have in mind and I'll reply with price, dimensions, availability and shipping. I'm happy to answer questions about a specific piece, a commission, or which work would suit your room.</p>
+        <a href="{{ emailHref }}" style="display:inline-block; background:#24352E; color:#F4EEE3; padding:18px 30px; font-size:14px; letter-spacing:0.13em; text-transform:uppercase" style-hover="background:#8E5D5B">Julia@juliadevonart.com</a>
+        <div style="margin-top:40px; padding-top:28px; border-top:1px solid rgba(36,53,46,0.14); display:grid; gap:18px; max-width:44ch; font-size:15px; line-height:1.7; color:#3B4A43">
+          <p style="margin:0"><strong style="font-weight:500; color:#24352E">Available work.</strong> Sizes are listed with each painting in the portfolio; write for current pricing. Sold pieces stay online as a record of the series.</p>
+          <p style="margin:0"><strong style="font-weight:500; color:#24352E">Commissions.</strong> A small number each year, usually within the palette of a current series. Tell me the space and the size.</p>
+          <p style="margin:0"><strong style="font-weight:500; color:#24352E">Elsewhere.</strong> New work and studio days go up on <a href="https://instagram.com/juliadevonart" target="_blank" rel="noopener" style="border-bottom:1px solid #E0A02F">Instagram</a>.</p>
+        </div>
+      </div>
+      <div style="min-width:0">
+        <img src="images/unity-02.jpg" alt="Unity No. 2, acrylic on canvas" style="width:100%; height:auto">
+        <p style="margin:12px 0 0; font-size:12px; letter-spacing:0.06em; color:#5C6A62">From the <em style="font-family:Newsreader, Georgia, serif">Unity</em> series, 2026</p>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <footer style="border-top:1px solid rgba(36,53,46,0.14); padding:clamp(32px,4vw,52px) clamp(20px,5vw,64px); display:flex; flex-wrap:wrap; gap:16px 32px; justify-content:space-between; align-items:baseline; font-size:13px; color:#5C6A62">
+    <p style="margin:0">© 2026 Julia Devon Cohen · Tampa Bay, Florida</p>
+    <div style="display:flex; gap:24px">
+      <a href="{{ emailPlain }}">Julia@juliadevonart.com</a>
+      <a href="https://instagram.com/juliadevonart" target="_blank" rel="noopener">@juliadevonart</a>
+    </div>
+  </footer>
+
+  <sc-if value="{{ selected }}">
+    <div onClick="{{ close }}" style="position:fixed; inset:0; background:rgba(36,53,46,0.94); z-index:80; display:flex; align-items:center; justify-content:center; padding:clamp(16px,4vw,56px)">
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:clamp(20px,3vw,44px); align-items:center; max-width:1180px; width:100%; max-height:100%">
+        <div style="min-width:0; display:flex; justify-content:center">
+          <sc-if value="{{ selected.img }}">
+            <img src="{{ selected.img }}" alt="{{ selected.title }}" style="max-width:100%; max-height:74vh; width:auto; height:auto; object-fit:contain">
+          </sc-if>
+          <sc-if value="{{ selected.placeholder }}">
+            <div style="width:100%; aspect-ratio:4/3; background:{{ selected.stripes }}; display:flex; align-items:flex-end; padding:16px">
+              <span style="font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:11px; letter-spacing:0.08em; color:#3B4A43; background:#F4EEE3; padding:4px 8px">{{ selected.slot }}</span>
+            </div>
+          </sc-if>
+        </div>
+        <div style="min-width:0; color:#F4EEE3">
+          <h2 style="font-family:Newsreader, Georgia, serif; font-weight:300; font-size:clamp(28px,3.6vw,44px); line-height:1.05; margin:0 0 8px">{{ selected.title }}</h2>
+          <p style="margin:0 0 26px; font-size:14px; letter-spacing:0.1em; text-transform:uppercase; color:#E0A02F">Unity · {{ selected.year }}</p>
+          <dl style="margin:0 0 30px; display:grid; grid-template-columns:auto 1fr; gap:10px 22px; font-size:15px; line-height:1.5">
+            <dt style="color:rgba(244,238,227,0.6)">Medium</dt><dd style="margin:0">{{ selected.medium }}</dd>
+            <sc-if value="{{ showPrices }}">
+              <dt style="color:rgba(244,238,227,0.6)">Price</dt>
+            </sc-if>
+            <sc-if value="{{ showPrices }}">
+              <dd style="margin:0">{{ selected.price }}</dd>
+            </sc-if>
+          </dl>
+          <div style="display:flex; flex-wrap:wrap; gap:14px 24px; align-items:center">
+            <a href="{{ selected.mailto }}" style="display:inline-block; background:#F4EEE3; color:#24352E; padding:15px 26px; font-size:13px; letter-spacing:0.13em; text-transform:uppercase" style-hover="background:#F0B0A8">Inquire</a>
+            <a href="#" onClick="{{ close }}" style="font-size:13px; letter-spacing:0.13em; text-transform:uppercase; color:rgba(244,238,227,0.7); border-bottom:1px solid rgba(244,238,227,0.3); padding-bottom:3px">Close</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showPrices&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Portfolio&quot;},&quot;showPlaceholders&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Portfolio&quot;},&quot;email&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Julia@juliadevonart.com&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Contact&quot;}}">
+const STRIPES = [
+  "repeating-linear-gradient(118deg, #EDE0CB 0 14px, #E7DFD1 14px 28px)",
+  "repeating-linear-gradient(118deg, #EFD9D4 0 14px, #E9DED6 14px 28px)",
+  "repeating-linear-gradient(118deg, #E3E2CB 0 14px, #E7DFD1 14px 28px)",
+  "repeating-linear-gradient(118deg, #E4DCD8 0 14px, #EDE4D6 14px 28px)"
+];
+
+const RAW = [
+  { title: "Unity No. 1", size: "40 × 30 in", price: "$2,400", status: "Available", img: "images/unity-01.jpg", ratio: "4 / 3" },
+  { title: "Unity No. 2", size: "30 × 30 in", price: "$1,900", status: "Available", img: "images/unity-02.jpg", ratio: "1 / 1" },
+  { title: "Unity No. 3", size: "36 × 24 in", price: "$1,800", status: "Sold", ratio: "3 / 2" },
+  { title: "Unity No. 4", size: "24 × 24 in", price: "$1,400", status: "Available", ratio: "1 / 1" },
+  { title: "Unity No. 5", size: "48 × 36 in", price: "$3,200", status: "Available", ratio: "4 / 3" },
+  { title: "Unity No. 6", size: "20 × 16 in", price: "$950", status: "Sold", ratio: "5 / 4" },
+  { title: "Unity No. 7", size: "30 × 40 in", price: "$2,400", status: "Available", ratio: "3 / 4" },
+  { title: "Unity No. 8", size: "24 × 18 in", price: "$1,200", status: "Available", ratio: "4 / 3" }
+];
+
+class Component extends DCLogic {
+  state = { page: "home", sel: null };
+
+  go = (page) => (e) => {
+    if (e) e.preventDefault();
+    this.setState({ page, sel: null });
+    window.scrollTo(0, 0);
+  };
+
+  componentDidMount() {
+    this._key = (e) => { if (e.key === "Escape") this.setState({ sel: null }); };
+    window.addEventListener("keydown", this._key);
+  }
+  componentWillUnmount() { window.removeEventListener("keydown", this._key); }
+
+  works() {
+    const showPrices = this.props.showPrices ?? false;
+    const showPlaceholders = this.props.showPlaceholders ?? false;
+    const email = this.props.email || "Julia@juliadevonart.com";
+    return RAW.filter((w) => showPlaceholders || w.img).map((w, i) => {
+      const status = w.status;
+      return {
+        ...w,
+        year: "2026",
+        medium: "Acrylic and gouache on canvas",
+        status,
+        statusColor: status === "Sold" ? "#8E5D5B" : "#5C6A62",
+        line: showPrices ? w.size + " · " + (status === "Sold" ? "Sold" : w.price) : w.size,
+        showPrice: showPrices,
+        placeholder: !w.img,
+        bg: w.img ? 'url("' + w.img + '")' : "none",
+        stripes: STRIPES[i % STRIPES.length],
+        slot: "artwork photo — " + w.title.toLowerCase(),
+        mailto: "mailto:" + email + "?subject=" + encodeURIComponent("Inquiry: " + w.title),
+        open: (e) => { if (e) e.preventDefault(); this.setState({ sel: i }); }
+      };
+    });
+  }
+
+  renderVals() {
+    const page = this.state.page;
+    const works = this.works();
+    const ul = (p) => (page === p ? "#E0A02F" : "transparent");
+    const email = this.props.email || "Julia@juliadevonart.com";
+    return {
+      works,
+      workCount: works.length,
+      email,
+      emailHref: "mailto:" + email + "?subject=" + encodeURIComponent("Inquiry about a painting"),
+      emailPlain: "mailto:" + email,
+      showPrices: this.props.showPrices ?? false,
+      selected: this.state.sel === null ? null : works[this.state.sel],
+      close: (e) => { if (e) e.preventDefault(); this.setState({ sel: null }); },
+      isHome: page === "home",
+      isAbout: page === "about",
+      isInquire: page === "inquire",
+      goHome: this.go("home"),
+      goPortfolio: this.go("home"),
+      goAbout: this.go("about"),
+      goInquire: this.go("inquire"),
+      ulPortfolio: ul("home"),
+      ulAbout: ul("about"),
+      ulInquire: ul("inquire")
+    };
+  }
+}
+</script>
 </body>
 </html>
